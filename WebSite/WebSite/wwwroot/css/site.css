@@ -12,6 +12,18 @@ a {
   color: #0366d6;
 }
 
+.content {
+    width: 100%;
+    height: 800px;
+    display: flex;
+    background-color: dimgrey;
+    justify-content: center;
+}
+
+h1 {
+    color:antiquewhite;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
@@ -69,3 +81,4 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+

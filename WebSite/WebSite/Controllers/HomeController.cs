@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using WebSite.Models;
 
 namespace WebSite.Controllers
@@ -23,15 +19,32 @@ namespace WebSite.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult Login(LoginModel model)
         {
-            return View();
+            string pass = "111222";
+            string login = "admin";
+
+            _logger.LogError("Login");
+
+            if (model.Login == login && model.Password == pass) return RedirectPermanent("~/Home/AuthorizedMenu");
+            else return RedirectPermanent("~/Home/BadLogin");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        
+        public IActionResult BadLogin()
+        {
+            return View("AccessDenied");
+        }
+
+        public IActionResult AuthorizedMenu()
+        {
+            return View("AccessPassedView");
         }
     }
 }
